@@ -4,15 +4,16 @@ import Example from './Componente/Navbar';
 import { useState } from 'react';
 import { Button, Col, Container, Row } from 'reactstrap';
 import Swal from 'sweetalert2';
+import Listcomponent from './Componente/List/Listcomponent';
 
 const App = () => {
 
   const[edad, setEdad] = useState(0);
-  const[arreglo, setArreglo] = useState([1,2,3,4,5,6])
+  const[arreglo, setArreglo] = useState([1,2,3,4,5,6]);
 
   const aumentar = (e) =>{
     setEdad(edad+1);
-    //setArreglo
+    setArreglo([...arreglo,edad]);
   }
 
   const disminuir = (e) =>{    
@@ -32,6 +33,7 @@ const App = () => {
         <Col sm={6} md={3} className='center'><Button color='primary' onClick={aumentar}>Aumentar</Button></Col>
         <Col sm={6} md={3} className='center'><Button color='danger' onClick={disminuir}>Disminuir</Button></Col>
       </Row>
+      <Listcomponent arreglo={arreglo} setArreglo={setArreglo}></Listcomponent>
     </Container>
   );
 }
