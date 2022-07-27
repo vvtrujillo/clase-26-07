@@ -19,7 +19,7 @@ const App = () => {
   const disminuir = (e) =>{    
 
     if(edad==0){
-      Swal.fire('Edad no puede ser menor a cero','warning');
+      Swal.fire('Edad no puede ser menor a cero');
     }
     else{
       setEdad(edad-1);

@@ -1,5 +1,5 @@
 import { Col, Row, Table } from "reactstrap";
-import {IoIosTrash} from 'react-icons/io';
+import { FaRegTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 const Listcomponent = ({arreglo, setArreglo}) =>{
@@ -31,8 +31,8 @@ const Listcomponent = ({arreglo, setArreglo}) =>{
                     </thead>
                     <tbody>
                         {arreglo.map((valor, index) => <tr>
-                            <td>{valor}</td>
-                            <td><IoIosTrash onClick={e => eliminar(e, index)}></IoIosTrash></td>
+                            <td>{valor}</td>                            
+                            <td><FaRegTrashAlt onClick={e => eliminar(e, index)}></FaRegTrashAlt></td>
                             </tr>)}
                     </tbody>
                 </Table>
