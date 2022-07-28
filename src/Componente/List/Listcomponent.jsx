@@ -1,5 +1,5 @@
 import { Col, Row, Table } from "reactstrap";
-import { FaRegTrashAlt } from "react-icons/fa";
+import { FaDraftingCompass, FaRegTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 
 const Listcomponent = ({arreglo, setArreglo}) =>{
@@ -19,6 +19,8 @@ const Listcomponent = ({arreglo, setArreglo}) =>{
         })
     }
 
+const {nombre, apellido} = this.props;
+
     return(
         <Row>
             <Col xs={12}>
@@ -37,7 +39,14 @@ const Listcomponent = ({arreglo, setArreglo}) =>{
                     </tbody>
                 </Table>
             </Col>
-        </Row>
+            <div>
+                <ul>
+                    {/*<li>{this.props.nombre}</li>*/}
+                    {/*<li>{apellido}</li>*/}
+                </ul>
+                
+            </div>
+        </Row>       
     )
 
 }
