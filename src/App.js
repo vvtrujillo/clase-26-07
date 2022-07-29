@@ -13,7 +13,8 @@ const App = () => {
 
   const[datos, setDatos] = useState({
     nombre:'',
-    apellido:''
+    apellido:'',
+    email:''
   });
 
   const handleInputChange = (event) => {
@@ -23,20 +24,19 @@ const App = () => {
         ...datos,
         [event.target.name] : event.target.value
     })
-}
-
-  
+}  
 
   const enviarDatos = (evento) => {
     evento.preventDefault();
     //console.log('enviando datos....' + datos.nombre + ' ' + datos.apellido);
-    setDatosMuestra({nombreMostrar:datos.nombre, apellidoMostrar:datos.apellido});
+    setDatosMuestra({nombreMostrar:datos.nombre, apellidoMostrar:datos.apellido, emailMostrar:datos.email});
   }
 
   const [datosMuestra, setDatosMuestra] = useState({
     
     nombreMostrar:'',
-    apellidoMostrar:''
+    apellidoMostrar:'',
+    emailMostrar:''
 
   });
 
@@ -69,18 +69,38 @@ const App = () => {
 
       <h1>Formulario</h1>
       <Form className='row' onSubmit={enviarDatos}>
-        <div className='col-md-3'>
-          <input type='text' placeholder='nombre...' className='form-control' onChange={handleInputChange} name='nombre'></input>
-        </div>
-        <div className='col-md-3'>
-          <input type='text' placeholder='apellido...' className='form-control' onChange={handleInputChange} name='apellido'></input>
-        </div>
+        <Row>
+          <div className='col-md-1'>
+            <label>Nombre:</label>
+          </div>
+          <div className='col-md-3'>            
+            <input type='text' placeholder='nombre...' className='form-control' onChange={handleInputChange} name='nombre'></input>
+          </div>
+        </Row>
+        <Row>
+          <div className='col-md-1'>
+            <label>Apellido:</label>
+          </div>
+          <div className='col-md-3'>            
+            <input type='text' placeholder='apellido...' className='form-control' onChange={handleInputChange} name='apellido'></input>
+          </div>
+        </Row>
+        <Row>
+          <div className='col-md-1'>
+            <label>email:</label>
+          </div>
+          <div className='col-md-3'>
+            <input type='email' placeholder='email...' className='form-control' onChange={handleInputChange} name='email'></input>
+          </div>
+        </Row>
+        <Row>          
+        </Row>
         <div className='col-md-3'>
           <button type='submit' className='btn btn-primary'>Enviar</button>
         </div>        
       </Form>      
       <Listcomponent nombre={datos.nombre} apellido={datos.apellido} arreglo={arreglo} setArreglo={setArreglo} nombreMostrar={datosMuestra.nombreMostrar}
-      apellidoMostrar={datosMuestra.apellidoMostrar}></Listcomponent>
+      apellidoMostrar={datosMuestra.apellidoMostrar} emailMostrar={datosMuestra.emailMostrar}></Listcomponent>
     </Container>
   );
 }
