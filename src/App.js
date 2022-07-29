@@ -25,10 +25,20 @@ const App = () => {
     })
 }
 
+  
+
   const enviarDatos = (evento) => {
     evento.preventDefault();
-    console.log('enviando datos....' + datos.nombre + ' ' + datos.apellido);
+    //console.log('enviando datos....' + datos.nombre + ' ' + datos.apellido);
+    setDatosMuestra({nombreMostrar:datos.nombre, apellidoMostrar:datos.apellido});
   }
+
+  const [datosMuestra, setDatosMuestra] = useState({
+    
+    nombreMostrar:'',
+    apellidoMostrar:''
+
+  });
 
   const aumentar = (e) =>{
     setEdad(edad+1);
@@ -51,11 +61,11 @@ const App = () => {
 
   return (
     <Container>
-      <Row>
+      {/*<Row>
         <Col xs={12} className='center'><h1>La edad es: {edad}</h1></Col>
         <Col sm={6} md={3} className='center'><Button color='primary' onClick={aumentar}>Aumentar</Button></Col>
         <Col sm={6} md={3} className='center'><Button color='danger' onClick={disminuir}>Disminuir</Button></Col>        
-      </Row>
+      </Row>*/}
 
       <h1>Formulario</h1>
       <Form className='row' onSubmit={enviarDatos}>
@@ -68,9 +78,9 @@ const App = () => {
         <div className='col-md-3'>
           <button type='submit' className='btn btn-primary'>Enviar</button>
         </div>        
-      </Form>
-      {/*<Listcomponent arreglo={arreglo} setArreglo={setArreglo}></Listcomponent>*/}
-      <Listcomponent nombre={this.state.nombre} apellido={this.state.apellido}></Listcomponent>
+      </Form>      
+      <Listcomponent nombre={datos.nombre} apellido={datos.apellido} arreglo={arreglo} setArreglo={setArreglo} nombreMostrar={datosMuestra.nombreMostrar}
+      apellidoMostrar={datosMuestra.apellidoMostrar}></Listcomponent>
     </Container>
   );
 }
