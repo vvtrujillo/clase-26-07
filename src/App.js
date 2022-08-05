@@ -2,21 +2,22 @@ import logo from './logo.svg';
 import './App.css';
 import Example from './Componente/Navbar';
 import { useState } from 'react';
-import { Button, Col, Container, Form, Input, Row } from 'reactstrap';
+import { Button, Col, Container, Form, FormGroup, Input, Row } from 'reactstrap';
 import Swal from 'sweetalert2';
 import Listcomponent from './Componente/List/Listcomponent';
 
 const App = () => {
 
   const[edad, setEdad] = useState(0);
-  const[arreglo, setArreglo] = useState([1,2,3,4,5,6]);
-
+  const[arreglo, setArreglo] = useState([1,2,3,4,5,6]);  
   const[datos, setDatos] = useState({
     nombre:'',
     apellido:'',
-    email:''
+    email:'',
+    edad:'',
+    colorpelo: ''
   });
-
+  
   const handleInputChange = (event) => {
     // console.log(event.target.name)
     // console.log(event.target.value)
@@ -29,23 +30,30 @@ const App = () => {
   const enviarDatos = (evento) => {
     evento.preventDefault();
     //console.log('enviando datos....' + datos.nombre + ' ' + datos.apellido);
-    setDatosMuestra({nombreMostrar:datos.nombre, apellidoMostrar:datos.apellido, emailMostrar:datos.email});
+    setDatosMuestra({nombreMostrar:datos.nombre, apellidoMostrar:datos.apellido, emailMostrar:datos.email
+    ,edadMostrar:datos.edad, colorpeloMostrar:datos.colorpelo});
   }
 
   const [datosMuestra, setDatosMuestra] = useState({
     
     nombreMostrar:'',
     apellidoMostrar:'',
-    emailMostrar:''
+    emailMostrar:'',
+    edadMostrar: '',
+    colorpeloMostrar: ''
 
   });
 
   const aumentar = (e) =>{
-    setEdad(edad+1);
-    setArreglo([...arreglo,edad]);
+    console.log(datosMuestra.edadMostrar);
+
+    //setEdad(datosMuestra.edadMostrar+1);
+    setDatosMuestra(datosMuestra.edadMostrar+1);
+    enviarDatos();
+    //setArreglo([...arreglo,datosMuestra.edadMostrar]);
   }
 
-  const disminuir = (e) =>{    
+  const disminuir = (e) =>{
 
     if(edad==0){
       Swal.fire('Edad no puede ser menor a cero');
@@ -59,7 +67,7 @@ const App = () => {
     return nombre;
   }
 
-  return (
+  return (   
     <Container>
       {/*<Row>
         <Col xs={12} className='center'><h1>La edad es: {edad}</h1></Col>
@@ -69,38 +77,68 @@ const App = () => {
 
       <h1>Formulario</h1>
       <Form className='row' onSubmit={enviarDatos}>
-        <Row>
+        <FormGroup row>
           <div className='col-md-1'>
             <label>Nombre:</label>
           </div>
-          <div className='col-md-3'>            
+          <div className='col-md-4'>            
             <input type='text' placeholder='nombre...' className='form-control' onChange={handleInputChange} name='nombre'></input>
           </div>
-        </Row>
-        <Row>
+        </FormGroup>
+        <FormGroup row>
           <div className='col-md-1'>
             <label>Apellido:</label>
           </div>
-          <div className='col-md-3'>            
+          <div className='col-md-4'>            
             <input type='text' placeholder='apellido...' className='form-control' onChange={handleInputChange} name='apellido'></input>
           </div>
-        </Row>
-        <Row>
+        </FormGroup>
+        <FormGroup row>
+          <div className='col-md-1'>
+            <label>edad:</label>
+          </div>
+          <div className='col-md-4'>
+            <input type='text' placeholder='edad...' className='form-control' onChange={handleInputChange} name='edad'></input>
+          </div>
+        </FormGroup>
+        <FormGroup row>
+          <div className='col-md-1'>
+            <label>color pelo:</label>
+          </div>
+          <div className='col-md-4'>
+            <input type='text' placeholder='color pelo...' className='form-control' onChange={handleInputChange} name='colorpelo'></input>
+          </div>
+        </FormGroup>
+        <FormGroup row>
           <div className='col-md-1'>
             <label>email:</label>
           </div>
-          <div className='col-md-3'>
+          <div className='col-md-4'>
             <input type='email' placeholder='email...' className='form-control' onChange={handleInputChange} name='email'></input>
           </div>
-        </Row>
-        <Row>          
-        </Row>
-        <div className='col-md-3'>
-          <button type='submit' className='btn btn-primary'>Enviar</button>
-        </div>        
+        </FormGroup>
+        <FormGroup row>
+          <div className='col-md-3'>
+            <button type='submit' className='btn btn-primary'>Enviar</button>
+          </div>
+          <div className='col-md-3'>
+            <Button color='primary' onClick={aumentar}>Aumentar</Button>
+          </div>
+        </FormGroup>                
       </Form>      
-      <Listcomponent nombre={datos.nombre} apellido={datos.apellido} arreglo={arreglo} setArreglo={setArreglo} nombreMostrar={datosMuestra.nombreMostrar}
-      apellidoMostrar={datosMuestra.apellidoMostrar} emailMostrar={datosMuestra.emailMostrar}></Listcomponent>
+      <Listcomponent nombre={datos.nombre} 
+                     apellido={datos.apellido} 
+                     arreglo={arreglo}
+                     setArreglo={setArreglo}
+                     nombreMostrar={datosMuestra.nombreMostrar}
+                     apellidoMostrar={datosMuestra.apellidoMostrar}
+                     emailMostrar={datosMuestra.emailMostrar}
+                     edadMostrar={datosMuestra.edadMostrar}
+                     colorpeloMostrar={datosMuestra.colorpeloMostrar}>                    
+      </Listcomponent>
+      <Row>
+        
+      </Row>
     </Container>
   );
 }

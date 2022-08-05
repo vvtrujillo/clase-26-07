@@ -2,7 +2,15 @@ import { Col, Row, Table } from "reactstrap";
 import { FaDraftingCompass, FaRegTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 
-const Listcomponent = ({arreglo, setArreglo, nombre, apellido, nombreMostrar, apellidoMostrar,emailMostrar}) =>{
+const Listcomponent = ({arreglo,
+                       setArreglo,
+                       nombre,
+                       apellido,
+                       nombreMostrar,
+                       apellidoMostrar,
+                       emailMostrar,
+                       edadMostrar,
+                       colorpeloMostrar}) =>{
 
     const eliminar = (e, i) => {
         Swal.fire({
@@ -37,13 +45,17 @@ const Listcomponent = ({arreglo, setArreglo, nombre, apellido, nombreMostrar, ap
                     </tbody>
                 </Table>
             </Col>*/}
-            <div>
+            {/*<div>
                 <ul>
                     <li>{nombreMostrar}</li>
                     <li>{apellidoMostrar}</li>
                     <li>{emailMostrar}</li>
                 </ul>
-                
+                </div>*/}
+            <div>
+                <h2>{apellidoMostrar}, {nombreMostrar}</h2>
+                <p>Edad: {edadMostrar}</p>
+                <p>Color de Pelo: {colorpeloMostrar}</p>
             </div>
         </Row>       
     )
